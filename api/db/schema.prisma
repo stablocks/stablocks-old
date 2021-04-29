@@ -238,6 +238,7 @@ model Ticket {
 
 model TicketMessage {
   id         Int       @id @default(autoincrement())
+  message    String
   ticket     Ticket    @relation(fields: [taskId], references: [id])
   taskId     String
   employee   Employee? @relation(fields: [employeeId], references: [id])
@@ -277,6 +278,7 @@ model Task {
 
 model TaskMessage {
   id         Int       @id @default(autoincrement())
+  message    String
   task       Task      @relation(fields: [taskId], references: [id])
   taskId     String
   employee   Employee? @relation(fields: [employeeId], references: [id])
