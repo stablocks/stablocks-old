@@ -7,3 +7,291 @@ generator client {
   provider      = "prisma-client-js"
   binaryTargets = "native"
 }
+
+// ----- INTERNAL -----
+
+// Account for organization
+model Organization {
+  id                String     @id @default(cuid())
+  // ----- General settings -----
+  name              String
+  slug              String     @unique
+  stripeId          String
+  // ----- Module toggles -----
+  email             Boolean    @default(false)
+  communications    Boolean    @default(false)
+  payroll           Boolean    @default(false)
+  hr                Boolean    @default(false)
+  accounting        Boolean    @default(false)
+  recruiting        Boolean    @default(false)
+  crm               Boolean    @default(false)
+  marketing         Boolean    @default(false)
+  projectManagement Boolean    @default(false)
+  helpdesk          Boolean    @default(false)
+  taskTracking      Boolean    @default(false)
+  // ----- Recruiting -----
+  jobs              Job[]
+  // ----- Linked data -----
+  employees         Employee[]
+  contacts          Contact[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+// Internal employee
+model Employee {
+  id                String             @id @default(cuid())
+  // ----- General info -----
+  firstName         String
+  lastName          String
+  email             String
+  title             String?
+  // ----- Organization info -----
+  organization      Organization       @relation(fields: [organizationId], references: [id])
+  organizationId    String
+  organizationRoles OrganizationRole[]
+  department        Department?        @relation(fields: [departmentId], references: [id])
+  departmentId      Int?
+  supervisorId      String?
+  supervisor        Employee?          @relation("SupervisorEmployees", fields: [supervisorId], references: [id])
+  employees         Employee[]         @relation("SupervisorEmployees")
+  // ----- HR info -----
+  employeePay       EmployeePay?
+  // ----- Helpdesk -----
+  tasks             Task[]
+  taskMessages      TaskMessage[]
+  // ----- Hiring -----
+  applications      Application[]
+  // ----- Linked data -----
+  contacts          Contact[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+  @@unique([organizationId, email])
+}
+
+// Internal Department
+model Department {
+  id        Int        @id @default(autoincrement())
+  name      String
+  employees Employee[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+// Salary
+model EmployeePay {
+  id         String          @id @default(cuid())
+  amount     Int
+  type       EmployeePayType
+  employee   Employee        @relation(fields: [employeeId], references: [id])
+  employeeId String
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+// Jobs and Recruiting
+model Job {
+  id             String             @id @default(cuid())
+  title          String
+  description    String
+  fields         ApplicationField[]
+  applications   Application[]
+  fieldOrder     FieldOrder[]
+  organization   Organization       @relation(fields: [organizationId], references: [id])
+  organizationId String
+}
+
+model Application {
+  id         String              @id @default(cuid())
+  job        Job                 @relation(fields: [jobId], references: [id])
+  jobId      String
+  employee   Employee            @relation(fields: [employeeId], references: [id])
+  employeeId String
+  answers    ApplicationAnswer[]
+  status     ApplicationStatus
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model ApplicationAnswer {
+  id            String           @id @default(cuid())
+  answer        String
+  application   Application      @relation(fields: [applicationId], references: [id])
+  applicationId String
+  field         ApplicationField @relation(fields: [fieldId], references: [id])
+  fieldId       String
+
+  @@unique([applicationId, fieldId])
+}
+
+model FieldOrder {
+  id      Int              @id @default(autoincrement())
+  order   Int
+  job     Job              @relation(fields: [jobId], references: [id])
+  jobId   String
+  field   ApplicationField @relation(fields: [fieldId], references: [id])
+  fieldId String
+}
+
+model ApplicationField {
+  id          String              @id @default(cuid())
+  title       String
+  description String?
+  type        FieldType
+  jobs        Job[]
+  answers     ApplicationAnswer[]
+  fieldOrder  FieldOrder[]
+}
+
+// Customer, lead, etc.
+model Contact {
+  id             String        @id @default(cuid())
+  // ----- General info -----
+  firstName      String?
+  lastName       String?
+  email          String?
+  phone          Int?
+  company        Company?      @relation(fields: [companyId], references: [id])
+  companyId      String?
+  // ----- Internal information -----
+  organization   Organization  @relation(fields: [organizationId], references: [id])
+  organizationId String
+  employee       Employee?     @relation(fields: [employeeId], references: [id])
+  employeeId     String?
+  // Helpdesk
+  tasks          Task[]
+  taskMessages   TaskMessage[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+// Customer organization/company
+model Company {
+  id       String    @id @default(cuid())
+  name     String
+  website  String?
+  phone    Int?
+  contacts Contact[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+// ----- HELPDESK -----
+
+model Article {
+  id         Int           @id @default(autoincrement())
+  title      String
+  content    String
+  category   Category?     @relation(fields: [categoryId], references: [id])
+  categoryId Int?
+  status     ArticleStatus
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  articles Article[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Project {
+  id          String  @id @default(cuid())
+  title       String
+  description String?
+  tasks       Task[]
+}
+
+model Task {
+  id          String        @id @default(cuid())
+  title       String
+  description String?
+  contact     Contact?      @relation(fields: [contactId], references: [id])
+  contactId   String?
+  status      TaskStatus
+  assigned    Employee      @relation(fields: [assignedId], references: [id])
+  assignedId  String
+  project     Project?      @relation(fields: [projectId], references: [id])
+  projectId   String?
+  messages    TaskMessage[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model TaskMessage {
+  id         Int       @id @default(autoincrement())
+  task       Task      @relation(fields: [taskId], references: [id])
+  taskId     String
+  employee   Employee? @relation(fields: [employeeId], references: [id])
+  employeeId String?
+  contact    Contact?  @relation(fields: [contactId], references: [id])
+  contactId  String?
+
+  createdAt DateTime @default(now())
+}
+
+// ----- ENUMS -----
+
+enum OrganizationRole {
+  admin
+  hr
+  manager
+  marketing
+  sales
+}
+
+enum EmployeeStatus {
+  applied
+  prospect
+  interviewing
+  offered
+  hired
+  left
+}
+
+enum EmployeePayType {
+  salary
+  hourly
+  contract
+}
+
+enum TaskStatus {
+  open
+  pending
+  closed
+  archived
+}
+
+enum FieldType {
+  input
+  textarea
+  select
+  radio
+  checkbox
+}
+
+enum ArticleStatus {
+  draft
+  published
+  archived
+}
+
+enum ApplicationStatus {
+  submitted
+  reviewed
+  offered
+  archived
+}
