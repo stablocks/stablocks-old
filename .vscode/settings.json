@@ -9,6 +9,8 @@
     "editor.formatOnSave": true
   },
   "cSpell.words": [
-    "autoincrement"
+    "autoincrement",
+    "helpdesk",
+    "postgresql"
   ]
 }

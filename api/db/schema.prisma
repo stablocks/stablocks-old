@@ -12,25 +12,26 @@ generator client {
 
 // Account for organization
 model Organization {
-  id                String     @id @default(cuid())
+  id                String             @id @default(cuid())
   // ----- General settings -----
   name              String
-  slug              String     @unique
+  slug              String             @unique
   stripeId          String
   // ----- Module toggles -----
-  email             Boolean    @default(false)
-  communications    Boolean    @default(false)
-  payroll           Boolean    @default(false)
-  hr                Boolean    @default(false)
-  accounting        Boolean    @default(false)
-  recruiting        Boolean    @default(false)
-  crm               Boolean    @default(false)
-  marketing         Boolean    @default(false)
-  projectManagement Boolean    @default(false)
-  helpdesk          Boolean    @default(false)
-  taskTracking      Boolean    @default(false)
+  email             Boolean            @default(false)
+  communications    Boolean            @default(false)
+  payroll           Boolean            @default(false)
+  hr                Boolean            @default(false)
+  accounting        Boolean            @default(false)
+  recruiting        Boolean            @default(false)
+  crm               Boolean            @default(false)
+  marketing         Boolean            @default(false)
+  projectManagement Boolean            @default(false)
+  helpdesk          Boolean            @default(false)
+  taskTracking      Boolean            @default(false)
   // ----- Recruiting -----
   jobs              Job[]
+  applicationFields ApplicationField[]
   // ----- Linked data -----
   employees         Employee[]
   contacts          Contact[]
@@ -59,6 +60,9 @@ model Employee {
   // ----- HR info -----
   employeePay       EmployeePay?
   // ----- Helpdesk -----
+  tickets           Ticket[]
+  ticketMessage     TicketMessage[]
+  // ----- Project management -----
   tasks             Task[]
   taskMessages      TaskMessage[]
   // ----- Hiring -----
@@ -104,12 +108,17 @@ model Job {
   fieldOrder     FieldOrder[]
   organization   Organization       @relation(fields: [organizationId], references: [id])
   organizationId String
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
 }
 
 model Application {
   id         String              @id @default(cuid())
   job        Job                 @relation(fields: [jobId], references: [id])
   jobId      String
+  firstName  String
+  lastName   String
   employee   Employee            @relation(fields: [employeeId], references: [id])
   employeeId String
   answers    ApplicationAnswer[]
@@ -140,33 +149,38 @@ model FieldOrder {
 }
 
 model ApplicationField {
-  id          String              @id @default(cuid())
-  title       String
-  description String?
-  type        FieldType
-  jobs        Job[]
-  answers     ApplicationAnswer[]
-  fieldOrder  FieldOrder[]
+  id             String              @id @default(cuid())
+  title          String
+  description    String?
+  type           FieldType
+  organization   Organization        @relation(fields: [organizationId], references: [id])
+  organizationId String
+  jobs           Job[]
+  answers        ApplicationAnswer[]
+  fieldOrder     FieldOrder[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
 }
 
 // Customer, lead, etc.
 model Contact {
-  id             String        @id @default(cuid())
+  id             String          @id @default(cuid())
   // ----- General info -----
   firstName      String?
   lastName       String?
   email          String?
   phone          Int?
-  company        Company?      @relation(fields: [companyId], references: [id])
+  company        Company?        @relation(fields: [companyId], references: [id])
   companyId      String?
   // ----- Internal information -----
-  organization   Organization  @relation(fields: [organizationId], references: [id])
+  organization   Organization    @relation(fields: [organizationId], references: [id])
   organizationId String
-  employee       Employee?     @relation(fields: [employeeId], references: [id])
+  employee       Employee?       @relation(fields: [employeeId], references: [id])
   employeeId     String?
   // Helpdesk
-  tasks          Task[]
-  taskMessages   TaskMessage[]
+  tickets        Ticket[]
+  ticketMessage  TicketMessage[]
 
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
@@ -207,20 +221,50 @@ model Category {
   createdAt DateTime @default(now())
 }
 
+model Ticket {
+  id          String          @id @default(cuid())
+  title       String
+  description String?
+  contact     Contact?        @relation(fields: [contactId], references: [id])
+  contactId   String?
+  status      Status
+  assigned    Employee        @relation(fields: [assignedId], references: [id])
+  assignedId  String
+  messages    TicketMessage[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model TicketMessage {
+  id         Int       @id @default(autoincrement())
+  ticket     Ticket    @relation(fields: [taskId], references: [id])
+  taskId     String
+  employee   Employee? @relation(fields: [employeeId], references: [id])
+  employeeId String?
+  contact    Contact?  @relation(fields: [contactId], references: [id])
+  contactId  String?
+
+  createdAt DateTime @default(now())
+}
+
+// ----- PROJECT MANAGEMENT -----
+
 model Project {
   id          String  @id @default(cuid())
   title       String
   description String?
   tasks       Task[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
 }
 
 model Task {
   id          String        @id @default(cuid())
   title       String
   description String?
-  contact     Contact?      @relation(fields: [contactId], references: [id])
-  contactId   String?
-  status      TaskStatus
+  status      Status
   assigned    Employee      @relation(fields: [assignedId], references: [id])
   assignedId  String
   project     Project?      @relation(fields: [projectId], references: [id])
@@ -237,8 +281,6 @@ model TaskMessage {
   taskId     String
   employee   Employee? @relation(fields: [employeeId], references: [id])
   employeeId String?
-  contact    Contact?  @relation(fields: [contactId], references: [id])
-  contactId  String?
 
   createdAt DateTime @default(now())
 }
@@ -247,8 +289,8 @@ model TaskMessage {
 
 enum OrganizationRole {
   admin
-  hr
   manager
+  hr
   marketing
   sales
 }
@@ -268,7 +310,7 @@ enum EmployeePayType {
   contract
 }
 
-enum TaskStatus {
+enum Status {
   open
   pending
   closed
