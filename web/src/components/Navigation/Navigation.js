@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink, routes } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
 import {
   AtSymbolIcon,
   CurrencyDollarIcon,
@@ -26,6 +27,7 @@ import {
   ScaleIcon,
   CogIcon,
   ChatIcon,
+  EmojiHappyIcon,
 } from '@heroicons/react/outline'
 
 function classNames(...classes) {
@@ -33,6 +35,7 @@ function classNames(...classes) {
 }
 
 const Navigation = () => {
+  const { currentUser } = useAuth()
   const [activeSubmenu, setActiveSubmenu] = useState('')
 
   const navigation = [
@@ -43,13 +46,14 @@ const Navigation = () => {
       icon: OfficeBuildingIcon,
       submenu: [
         { name: 'Departments', to: '#', icon: TemplateIcon },
-        { name: 'Settings', to: '#', icon: CogIcon },
+        { name: 'Settings', to: '#', icon: CogIcon, roles: ['admin'] },
       ],
     },
     {
       name: 'Contacts',
       to: '#',
       icon: IdentificationIcon,
+      roles: ['admin, marketing, sales'],
       submenu: [{ name: 'Companies', to: '#', icon: AtSymbolIcon }],
     },
     {
@@ -62,7 +66,10 @@ const Navigation = () => {
       name: 'HR',
       to: '#',
       icon: UserGroupIcon,
-      submenu: [{ name: 'Payroll', to: '#', icon: CashIcon }],
+      submenu: [
+        { name: 'Payroll', to: '#', icon: CashIcon },
+        { name: 'Onboarding', to: '#', icon: EmojiHappyIcon },
+      ],
     },
     {
       name: 'Recruit',
@@ -130,7 +137,9 @@ const Navigation = () => {
                   onClick={() => toggleSubmenu(item.name)}
                 >
                   <span className="sr-only">
-                    Show / Hide {item.name} Sub-Menu
+                    {`${activeSubmenu === item.name ? 'Hide' : 'Show'} ${
+                      item.name
+                    } sub-menu`}
                   </span>
                   {activeSubmenu === item.name ? (
                     <ChevronUpIcon className="h-4 w-4" />

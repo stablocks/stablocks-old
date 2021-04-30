@@ -1,10 +1,53 @@
 import { Fragment, useState } from 'react'
 import { Link, routes } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
 import { Dialog, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Navigation from 'src/components/Navigation'
 
-export default function AdminLayout({ children }) {
+const HomeLink = () => {
+  return (
+    <Link
+      to={routes.dashboard()}
+      className="flex items-center flex-shrink-0 px-4"
+    >
+      <img
+        className="h-8 w-auto"
+        src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+        alt="Workflow"
+      />
+    </Link>
+  )
+}
+
+const ProfileLink = () => {
+  const { currentUser } = useAuth()
+  return (
+    <div className="flex-shrink-0 flex bg-gray-700 p-4">
+      <Link to={routes.profile()} className="flex-shrink-0 w-full group block">
+        <div className="flex items-center">
+          {currentUser.image && (
+            <div>
+              <img
+                className="inline-block h-9 w-9 rounded-full"
+                src={currentUser.image}
+                alt=""
+              />
+            </div>
+          )}
+          <div className="ml-3">
+            <p className="text-sm font-medium text-white">{`${currentUser.firstName} ${currentUser.lastName}`}</p>
+            <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">
+              View profile
+            </p>
+          </div>
+        </div>
+      </Link>
+    </div>
+  )
+}
+
+const AdminLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -58,39 +101,10 @@ export default function AdminLayout({ children }) {
                 </div>
               </Transition.Child>
               <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-                <Link
-                  to={routes.dashboard()}
-                  className="flex-shrink-0 flex items-center px-4"
-                >
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                    alt="Workflow"
-                  />
-                </Link>
+                <HomeLink />
                 <Navigation />
               </div>
-              <div className="flex-shrink-0 flex bg-gray-700 p-4">
-                <Link to="#" className="flex-shrink-0 group block">
-                  <div className="flex items-center">
-                    <div>
-                      <img
-                        className="inline-block h-10 w-10 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </div>
-                    <div className="ml-3">
-                      <p className="text-base font-medium text-white">
-                        Tom Cook
-                      </p>
-                      <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300">
-                        View profile
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
+              <ProfileLink />
             </div>
           </Transition.Child>
           <div className="flex-shrink-0 w-14">
@@ -104,37 +118,10 @@ export default function AdminLayout({ children }) {
         <div className="flex flex-col w-64">
           <div className="flex flex-col h-0 flex-1 bg-gray-800">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-              <Link
-                to={routes.dashboard()}
-                className="flex items-center flex-shrink-0 px-4"
-              >
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                  alt="Workflow"
-                />
-              </Link>
+              <HomeLink />
               <Navigation />
             </div>
-            <div className="flex-shrink-0 flex bg-gray-700 p-4">
-              <Link to="#" className="flex-shrink-0 w-full group block">
-                <div className="flex items-center">
-                  <div>
-                    <img
-                      className="inline-block h-9 w-9 rounded-full"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-white">Tom Cook</p>
-                    <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">
-                      View profile
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
+            <ProfileLink />
           </div>
         </div>
       </div>
@@ -150,11 +137,6 @@ export default function AdminLayout({ children }) {
         </div>
         <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
           <div className="py-6">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h1 className="text-2xl font-semibold text-gray-900">
-                Dashboard
-              </h1>
-            </div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
               {children}
             </div>
@@ -164,3 +146,5 @@ export default function AdminLayout({ children }) {
     </div>
   )
 }
+
+export default AdminLayout
