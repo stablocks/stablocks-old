@@ -34,6 +34,7 @@ model Organization {
   applicationFields ApplicationField[]
   // ----- Linked data -----
   employees         Employee[]
+  employeeAccess    EmployeeAccess[]
   contacts          Contact[]
 
   updatedAt DateTime @updatedAt
@@ -57,8 +58,11 @@ model Employee {
   supervisorId      String?
   supervisor        Employee?          @relation("SupervisorEmployees", fields: [supervisorId], references: [id])
   employees         Employee[]         @relation("SupervisorEmployees")
+  access            EmployeeAccess[]
   // ----- HR info -----
   employeePay       EmployeePay?
+  onboarding        Onboarding?
+  onboardingTasks   OnboardingTask[]
   // ----- Helpdesk -----
   tickets           Ticket[]
   ticketMessage     TicketMessage[]
@@ -71,6 +75,14 @@ model Employee {
 
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
+}
+
+model EmployeeAccess {
+  id String             @id @default(cuid())
+  organization   Organization       @relation(fields: [organizationId], references: [id])
+  organizationId String
+  employee   Employee       @relation(fields: [employeeId], references: [id])
+  employeeId String
 }
 
 // Internal Department
@@ -90,6 +102,31 @@ model EmployeePay {
   type       EmployeePayType
   employee   Employee        @relation(fields: [employeeId], references: [id])
   employeeId String
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model Onboarding {
+  id String @id @default(cuid())
+  employee Employee @relation(fields: [employeeId], references: [id])
+  employeeId String
+  tasks OnboardingTask[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+
+}
+
+model OnboardingTask {
+  id          String        @id @default(cuid())
+  title       String
+  description String?
+  status      Status
+  assigned    Employee      @relation(fields: [assignedId], references: [id])
+  assignedId  String
+  onboarding     Onboarding?      @relation(fields: [projectId], references: [id])
+  projectId   String?
 
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
@@ -278,8 +315,8 @@ model Task {
   status      Status
   assigned    Employee      @relation(fields: [assignedId], references: [id])
   assignedId  String
-  project     Project?      @relation(fields: [projectId], references: [id])
-  projectId   String?
+  project     Project       @relation(fields: [projectId], references: [id])
+  projectId   String
   messages    TaskMessage[]
 
   updatedAt DateTime @updatedAt
@@ -305,6 +342,8 @@ enum OrganizationRole {
   hr
   marketing
   sales
+  finance
+  support
 }
 
 enum EmployeeStatus {
