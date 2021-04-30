@@ -46,7 +46,7 @@ model Employee {
   // ----- General info -----
   firstName         String
   lastName          String
-  email             String
+  email             String             @unique
   title             String?
   // ----- Organization info -----
   organization      Organization       @relation(fields: [organizationId], references: [id])
@@ -65,15 +65,12 @@ model Employee {
   // ----- Project management -----
   tasks             Task[]
   taskMessages      TaskMessage[]
-  // ----- Hiring -----
-  applications      Application[]
   // ----- Linked data -----
   contacts          Contact[]
+  contactNotes      ContactNote[]
 
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
-
-  @@unique([organizationId, email])
 }
 
 // Internal Department
@@ -114,18 +111,19 @@ model Job {
 }
 
 model Application {
-  id         String              @id @default(cuid())
-  job        Job                 @relation(fields: [jobId], references: [id])
-  jobId      String
-  firstName  String
-  lastName   String
-  employee   Employee            @relation(fields: [employeeId], references: [id])
-  employeeId String
-  answers    ApplicationAnswer[]
-  status     ApplicationStatus
+  id        String              @id @default(cuid())
+  job       Job                 @relation(fields: [jobId], references: [id])
+  jobId     String
+  firstName String
+  lastName  String
+  email     String
+  answers   ApplicationAnswer[]
+  status    ApplicationStatus
 
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
+
+  @@unique([jobId, email])
 }
 
 model ApplicationAnswer {
@@ -178,11 +176,23 @@ model Contact {
   organizationId String
   employee       Employee?       @relation(fields: [employeeId], references: [id])
   employeeId     String?
+  note           ContactNote[]
   // Helpdesk
   tickets        Ticket[]
   ticketMessage  TicketMessage[]
 
   updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model ContactNote {
+  id         Int       @id @default(autoincrement())
+  message    String
+  contact    Contact   @relation(fields: [contactId], references: [id])
+  contactId  String
+  employee   Employee? @relation(fields: [employeeId], references: [id])
+  employeeId String?
+
   createdAt DateTime @default(now())
 }
 

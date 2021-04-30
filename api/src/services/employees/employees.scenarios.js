@@ -3,15 +3,15 @@ export const standard = defineScenario({
     one: {
       firstName: 'String',
       lastName: 'String',
-      email: 'String',
+      email: 'String1791954',
       organizationRoles: 'admin',
-      updatedAt: '2021-04-29T23:44:45Z',
+      updatedAt: '2021-04-30T11:58:57Z',
       organization: {
         create: {
           name: 'String',
-          slug: 'String3566067',
+          slug: 'String4191159',
           stripeId: 'String',
-          updatedAt: '2021-04-29T23:44:45Z',
+          updatedAt: '2021-04-30T11:58:57Z',
         },
       },
     },
@@ -19,15 +19,15 @@ export const standard = defineScenario({
     two: {
       firstName: 'String',
       lastName: 'String',
-      email: 'String',
+      email: 'String548459',
       organizationRoles: 'admin',
-      updatedAt: '2021-04-29T23:44:45Z',
+      updatedAt: '2021-04-30T11:58:57Z',
       organization: {
         create: {
           name: 'String',
-          slug: 'String313253',
+          slug: 'String8797764',
           stripeId: 'String',
-          updatedAt: '2021-04-29T23:44:45Z',
+          updatedAt: '2021-04-30T11:58:57Z',
         },
       },
     },

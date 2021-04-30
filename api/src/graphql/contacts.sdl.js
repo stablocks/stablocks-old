@@ -11,6 +11,7 @@ export const schema = gql`
     organizationId: String!
     employee: Employee
     employeeId: String
+    note: [ContactNote]!
     tickets: [Ticket]!
     ticketMessage: [TicketMessage]!
     updatedAt: DateTime!

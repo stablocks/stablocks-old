@@ -18,8 +18,8 @@ export const schema = gql`
     ticketMessage: [TicketMessage]!
     tasks: [Task]!
     taskMessages: [TaskMessage]!
-    applications: [Application]!
     contacts: [Contact]!
+    contactNotes: [ContactNote]!
     updatedAt: DateTime!
     createdAt: DateTime!
   }

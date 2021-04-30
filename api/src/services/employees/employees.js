@@ -48,8 +48,8 @@ export const Employee = {
     db.employee.findUnique({ where: { id: root.id } }).tasks(),
   taskMessages: (_obj, { root }) =>
     db.employee.findUnique({ where: { id: root.id } }).taskMessages(),
-  applications: (_obj, { root }) =>
-    db.employee.findUnique({ where: { id: root.id } }).applications(),
   contacts: (_obj, { root }) =>
     db.employee.findUnique({ where: { id: root.id } }).contacts(),
+  contactNotes: (_obj, { root }) =>
+    db.employee.findUnique({ where: { id: root.id } }).contactNotes(),
 }

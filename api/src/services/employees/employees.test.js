@@ -24,22 +24,22 @@ describe('employees', () => {
       input: {
         firstName: 'String',
         lastName: 'String',
-        email: 'String',
+        email: 'String9247715',
         organizationId: 'scenario.employee.two.organizationId',
         organizationRoles: 'admin',
-        updatedAt: '2021-04-29T23:44:45Z',
+        updatedAt: '2021-04-30T11:58:57Z',
       },
     })
 
     expect(result.firstName).toEqual('String')
     expect(result.lastName).toEqual('String')
-    expect(result.email).toEqual('String')
+    expect(result.email).toEqual('String9247715')
     expect(result.organizationId).toEqual(
       'scenario.employee.two.organizationId'
     )
 
     expect(result.organizationRoles).toEqual('admin')
-    expect(result.updatedAt).toEqual('2021-04-29T23:44:45Z')
+    expect(result.updatedAt).toEqual('2021-04-30T11:58:57Z')
   })
 
   scenario('updates a employee', async (scenario) => {

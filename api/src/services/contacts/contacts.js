@@ -36,6 +36,8 @@ export const Contact = {
     db.contact.findUnique({ where: { id: root.id } }).organization(),
   employee: (_obj, { root }) =>
     db.contact.findUnique({ where: { id: root.id } }).employee(),
+  note: (_obj, { root }) =>
+    db.contact.findUnique({ where: { id: root.id } }).note(),
   tickets: (_obj, { root }) =>
     db.contact.findUnique({ where: { id: root.id } }).tickets(),
   ticketMessage: (_obj, { root }) =>

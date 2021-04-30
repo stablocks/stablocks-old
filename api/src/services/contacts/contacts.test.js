@@ -23,22 +23,22 @@ describe('contacts', () => {
     const result = await createContact({
       input: {
         organizationId: 'scenario.contact.two.organizationId',
-        updatedAt: '2021-04-29T23:46:48Z',
+        updatedAt: '2021-04-30T11:59:18Z',
       },
     })
 
     expect(result.organizationId).toEqual('scenario.contact.two.organizationId')
-    expect(result.updatedAt).toEqual('2021-04-29T23:46:48Z')
+    expect(result.updatedAt).toEqual('2021-04-30T11:59:18Z')
   })
 
   scenario('updates a contact', async (scenario) => {
     const original = await contact({ id: scenario.contact.one.id })
     const result = await updateContact({
       id: original.id,
-      input: { updatedAt: '2021-04-30T23:46:48Z' },
+      input: { updatedAt: '2021-05-01T11:59:18Z' },
     })
 
-    expect(result.updatedAt).toEqual('2021-04-30T23:46:48Z')
+    expect(result.updatedAt).toEqual('2021-05-01T11:59:18Z')
   })
 
   scenario('deletes a contact', async (scenario) => {
