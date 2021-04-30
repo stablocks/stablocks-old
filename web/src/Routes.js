@@ -1,6 +1,7 @@
 import { Private, Router, Route, Set } from '@redwoodjs/router'
 import OrganizationProviderCell from 'src/components/OrganizationProviderCell'
 import AdminLayout from 'src/layouts/AdminLayout'
+import MainLayout from 'src/layouts/MainLayout'
 
 const Routes = () => {
   return (
@@ -11,9 +12,11 @@ const Routes = () => {
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
         </Set>
       </Private>
-      <Route path="/login" page={LoginPage} name="login" />
-      <Route path="/" page={HomePage} name="home" />
-      <Route notfound page={NotFoundPage} />
+      <Set wrap={MainLayout}>
+        <Route path="/login" page={LoginPage} name="login" />
+        <Route path="/" page={HomePage} name="home" />
+        <Route notfound page={NotFoundPage} />
+      </Set>
     </Router>
   )
 }

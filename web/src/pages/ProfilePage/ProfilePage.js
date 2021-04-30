@@ -2,9 +2,10 @@ import { Link, routes } from '@redwoodjs/router'
 import DashboardHeading from 'src/components/DashboardHeading'
 
 const ProfilePage = () => {
+  const title = 'Profile'
   return (
     <>
-      <DashboardHeading title="Profile" />
+      <DashboardHeading title={title} />
       <p>
         Find me in <code>./web/src/pages/ProfilePage/ProfilePage.js</code>
       </p>

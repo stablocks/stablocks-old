@@ -6,7 +6,10 @@ const DashboardPage = () => {
   const { currentUser } = useAuth()
   return (
     <>
-      <DashboardHeading title={`Welcome, ${currentUser.firstName}!`} />
+      <DashboardHeading
+        title={`Welcome, ${currentUser.firstName}!`}
+        tabTitle="Dashboard"
+      />
       <p>
         Find me in <code>./web/src/pages/DashboardPage/DashboardPage.js</code>
       </p>

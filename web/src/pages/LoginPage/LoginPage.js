@@ -12,7 +12,6 @@ const LoginPage = () => {
     })
   }
 
-  if (currentUser?.roles.includes('graduate')) navigate(routes.home())
   if (currentUser) navigate(routes.dashboard())
 
   return (
