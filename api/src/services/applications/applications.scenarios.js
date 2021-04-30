@@ -3,37 +3,20 @@ export const standard = defineScenario({
     one: {
       firstName: 'String',
       lastName: 'String',
+      email: 'String',
       status: 'submitted',
-      updatedAt: '2021-04-29T23:45:38Z',
+      updatedAt: '2021-04-30T23:35:04Z',
       job: {
         create: {
           title: 'String',
           description: 'String',
-          updatedAt: '2021-04-29T23:45:38Z',
+          updatedAt: '2021-04-30T23:35:04Z',
           organization: {
             create: {
               name: 'String',
-              slug: 'String8608178',
+              slug: 'String9199656',
               stripeId: 'String',
-              updatedAt: '2021-04-29T23:45:38Z',
-            },
-          },
-        },
-      },
-
-      employee: {
-        create: {
-          firstName: 'String',
-          lastName: 'String',
-          email: 'String',
-          organizationRoles: 'admin',
-          updatedAt: '2021-04-29T23:45:38Z',
-          organization: {
-            create: {
-              name: 'String',
-              slug: 'String294127',
-              stripeId: 'String',
-              updatedAt: '2021-04-29T23:45:38Z',
+              updatedAt: '2021-04-30T23:35:05Z',
             },
           },
         },
@@ -43,37 +26,20 @@ export const standard = defineScenario({
     two: {
       firstName: 'String',
       lastName: 'String',
+      email: 'String',
       status: 'submitted',
-      updatedAt: '2021-04-29T23:45:38Z',
+      updatedAt: '2021-04-30T23:35:05Z',
       job: {
         create: {
           title: 'String',
           description: 'String',
-          updatedAt: '2021-04-29T23:45:38Z',
+          updatedAt: '2021-04-30T23:35:05Z',
           organization: {
             create: {
               name: 'String',
-              slug: 'String2428947',
+              slug: 'String6466299',
               stripeId: 'String',
-              updatedAt: '2021-04-29T23:45:38Z',
-            },
-          },
-        },
-      },
-
-      employee: {
-        create: {
-          firstName: 'String',
-          lastName: 'String',
-          email: 'String',
-          organizationRoles: 'admin',
-          updatedAt: '2021-04-29T23:45:38Z',
-          organization: {
-            create: {
-              name: 'String',
-              slug: 'String4606249',
-              stripeId: 'String',
-              updatedAt: '2021-04-29T23:45:38Z',
+              updatedAt: '2021-04-30T23:35:05Z',
             },
           },
         },

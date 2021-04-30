@@ -1,14 +1,13 @@
 export const schema = gql`
-  type Task {
+  type OnboardingTask {
     id: String!
     title: String!
     description: String
     status: Status!
     assigned: Employee!
     assignedId: String!
-    project: Project!
-    projectId: String!
-    messages: [TaskMessage]!
+    onboarding: Onboarding
+    projectId: String
     updatedAt: DateTime!
     createdAt: DateTime!
   }
@@ -21,19 +20,19 @@ export const schema = gql`
   }
 
   type Query {
-    tasks: [Task!]!
-    task(id: String!): Task
+    onboardingTasks: [OnboardingTask!]!
+    onboardingTask(id: String!): OnboardingTask
   }
 
-  input CreateTaskInput {
+  input CreateOnboardingTaskInput {
     title: String!
     description: String
     status: Status!
     assignedId: String!
-    projectId: String!
+    projectId: String
   }
 
-  input UpdateTaskInput {
+  input UpdateOnboardingTaskInput {
     title: String
     description: String
     status: Status
@@ -42,8 +41,11 @@ export const schema = gql`
   }
 
   type Mutation {
-    createTask(input: CreateTaskInput!): Task!
-    updateTask(id: String!, input: UpdateTaskInput!): Task!
-    deleteTask(id: String!): Task!
+    createOnboardingTask(input: CreateOnboardingTaskInput!): OnboardingTask!
+    updateOnboardingTask(
+      id: String!
+      input: UpdateOnboardingTaskInput!
+    ): OnboardingTask!
+    deleteOnboardingTask(id: String!): OnboardingTask!
   }
 `

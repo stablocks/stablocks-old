@@ -5,8 +5,7 @@ export const schema = gql`
     jobId: String!
     firstName: String!
     lastName: String!
-    employee: Employee!
-    employeeId: String!
+    email: String!
     answers: [ApplicationAnswer]!
     status: ApplicationStatus!
     updatedAt: DateTime!
@@ -29,7 +28,7 @@ export const schema = gql`
     jobId: String!
     firstName: String!
     lastName: String!
-    employeeId: String!
+    email: String!
     status: ApplicationStatus!
   }
 
@@ -37,7 +36,7 @@ export const schema = gql`
     jobId: String
     firstName: String
     lastName: String
-    employeeId: String
+    email: String
     status: ApplicationStatus
   }
 

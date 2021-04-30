@@ -6,37 +6,20 @@ export const standard = defineScenario({
         create: {
           firstName: 'String',
           lastName: 'String',
+          email: 'String',
           status: 'submitted',
-          updatedAt: '2021-04-29T23:45:50Z',
+          updatedAt: '2021-04-30T23:35:16Z',
           job: {
             create: {
               title: 'String',
               description: 'String',
-              updatedAt: '2021-04-29T23:45:50Z',
+              updatedAt: '2021-04-30T23:35:17Z',
               organization: {
                 create: {
                   name: 'String',
-                  slug: 'String3591917',
+                  slug: 'String4786735',
                   stripeId: 'String',
-                  updatedAt: '2021-04-29T23:45:50Z',
-                },
-              },
-            },
-          },
-
-          employee: {
-            create: {
-              firstName: 'String',
-              lastName: 'String',
-              email: 'String',
-              organizationRoles: 'admin',
-              updatedAt: '2021-04-29T23:45:51Z',
-              organization: {
-                create: {
-                  name: 'String',
-                  slug: 'String2096782',
-                  stripeId: 'String',
-                  updatedAt: '2021-04-29T23:45:51Z',
+                  updatedAt: '2021-04-30T23:35:17Z',
                 },
               },
             },
@@ -48,13 +31,13 @@ export const standard = defineScenario({
         create: {
           title: 'String',
           type: 'input',
-          updatedAt: '2021-04-29T23:45:51Z',
+          updatedAt: '2021-04-30T23:35:17Z',
           organization: {
             create: {
               name: 'String',
-              slug: 'String3672524',
+              slug: 'String9060150',
               stripeId: 'String',
-              updatedAt: '2021-04-29T23:45:51Z',
+              updatedAt: '2021-04-30T23:35:17Z',
             },
           },
         },
@@ -67,37 +50,20 @@ export const standard = defineScenario({
         create: {
           firstName: 'String',
           lastName: 'String',
+          email: 'String',
           status: 'submitted',
-          updatedAt: '2021-04-29T23:45:51Z',
+          updatedAt: '2021-04-30T23:35:17Z',
           job: {
             create: {
               title: 'String',
               description: 'String',
-              updatedAt: '2021-04-29T23:45:51Z',
+              updatedAt: '2021-04-30T23:35:17Z',
               organization: {
                 create: {
                   name: 'String',
-                  slug: 'String1577563',
+                  slug: 'String6393977',
                   stripeId: 'String',
-                  updatedAt: '2021-04-29T23:45:51Z',
-                },
-              },
-            },
-          },
-
-          employee: {
-            create: {
-              firstName: 'String',
-              lastName: 'String',
-              email: 'String',
-              organizationRoles: 'admin',
-              updatedAt: '2021-04-29T23:45:51Z',
-              organization: {
-                create: {
-                  name: 'String',
-                  slug: 'String5979988',
-                  stripeId: 'String',
-                  updatedAt: '2021-04-29T23:45:51Z',
+                  updatedAt: '2021-04-30T23:35:17Z',
                 },
               },
             },
@@ -109,13 +75,13 @@ export const standard = defineScenario({
         create: {
           title: 'String',
           type: 'input',
-          updatedAt: '2021-04-29T23:45:51Z',
+          updatedAt: '2021-04-30T23:35:17Z',
           organization: {
             create: {
               name: 'String',
-              slug: 'String2178536',
+              slug: 'String6869294',
               stripeId: 'String',
-              updatedAt: '2021-04-29T23:45:51Z',
+              updatedAt: '2021-04-30T23:35:17Z',
             },
           },
         },

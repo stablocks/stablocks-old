@@ -6,23 +6,27 @@ export const standard = defineScenario({
         create: {
           title: 'String',
           status: 'open',
-          updatedAt: '2021-04-29T23:48:55Z',
+          updatedAt: '2021-04-30T23:37:37Z',
           assigned: {
             create: {
               firstName: 'String',
               lastName: 'String',
-              email: 'String',
+              email: 'String2910997',
               organizationRoles: 'admin',
-              updatedAt: '2021-04-29T23:48:55Z',
+              updatedAt: '2021-04-30T23:37:37Z',
               organization: {
                 create: {
                   name: 'String',
-                  slug: 'String8024501',
+                  slug: 'String6469479',
                   stripeId: 'String',
-                  updatedAt: '2021-04-29T23:48:55Z',
+                  updatedAt: '2021-04-30T23:37:37Z',
                 },
               },
             },
+          },
+
+          project: {
+            create: { title: 'String', updatedAt: '2021-04-30T23:37:37Z' },
           },
         },
       },
@@ -34,23 +38,27 @@ export const standard = defineScenario({
         create: {
           title: 'String',
           status: 'open',
-          updatedAt: '2021-04-29T23:48:55Z',
+          updatedAt: '2021-04-30T23:37:37Z',
           assigned: {
             create: {
               firstName: 'String',
               lastName: 'String',
-              email: 'String',
+              email: 'String930897',
               organizationRoles: 'admin',
-              updatedAt: '2021-04-29T23:48:55Z',
+              updatedAt: '2021-04-30T23:37:37Z',
               organization: {
                 create: {
                   name: 'String',
-                  slug: 'String2946646',
+                  slug: 'String6947354',
                   stripeId: 'String',
-                  updatedAt: '2021-04-29T23:48:55Z',
+                  updatedAt: '2021-04-30T23:37:37Z',
                 },
               },
             },
+          },
+
+          project: {
+            create: { title: 'String', updatedAt: '2021-04-30T23:37:37Z' },
           },
         },
       },

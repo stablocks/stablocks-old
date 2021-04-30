@@ -18,6 +18,7 @@ export const schema = gql`
     jobs: [Job]!
     applicationFields: [ApplicationField]!
     employees: [Employee]!
+    employeeAccess: [EmployeeAccess]!
     contacts: [Contact]!
     updatedAt: DateTime!
     createdAt: DateTime!

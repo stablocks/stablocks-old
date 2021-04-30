@@ -25,18 +25,18 @@ describe('applications', () => {
         jobId: 'scenario.application.two.jobId',
         firstName: 'String',
         lastName: 'String',
-        employeeId: 'scenario.application.two.employeeId',
+        email: 'String',
         status: 'submitted',
-        updatedAt: '2021-04-29T23:45:38Z',
+        updatedAt: '2021-04-30T23:35:04Z',
       },
     })
 
     expect(result.jobId).toEqual('scenario.application.two.jobId')
     expect(result.firstName).toEqual('String')
     expect(result.lastName).toEqual('String')
-    expect(result.employeeId).toEqual('scenario.application.two.employeeId')
+    expect(result.email).toEqual('String')
     expect(result.status).toEqual('submitted')
-    expect(result.updatedAt).toEqual('2021-04-29T23:45:38Z')
+    expect(result.updatedAt).toEqual('2021-04-30T23:35:04Z')
   })
 
   scenario('updates a application', async (scenario) => {

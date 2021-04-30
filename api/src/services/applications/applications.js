@@ -32,8 +32,6 @@ export const deleteApplication = ({ id }) => {
 export const Application = {
   job: (_obj, { root }) =>
     db.application.findUnique({ where: { id: root.id } }).job(),
-  employee: (_obj, { root }) =>
-    db.application.findUnique({ where: { id: root.id } }).employee(),
   answers: (_obj, { root }) =>
     db.application.findUnique({ where: { id: root.id } }).answers(),
 }

@@ -19,14 +19,16 @@ describe('tasks', () => {
         title: 'String',
         status: 'open',
         assignedId: 'scenario.task.two.assignedId',
-        updatedAt: '2021-04-29T23:48:47Z',
+        projectId: 'scenario.task.two.projectId',
+        updatedAt: '2021-04-30T23:37:28Z',
       },
     })
 
     expect(result.title).toEqual('String')
     expect(result.status).toEqual('open')
     expect(result.assignedId).toEqual('scenario.task.two.assignedId')
-    expect(result.updatedAt).toEqual('2021-04-29T23:48:47Z')
+    expect(result.projectId).toEqual('scenario.task.two.projectId')
+    expect(result.updatedAt).toEqual('2021-04-30T23:37:28Z')
   })
 
   scenario('updates a task', async (scenario) => {

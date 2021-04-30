@@ -1,56 +1,48 @@
 export const standard = defineScenario({
-  task: {
+  onboardingTask: {
     one: {
       title: 'String',
       status: 'open',
-      updatedAt: '2021-04-30T23:37:28Z',
+      updatedAt: '2021-04-30T23:31:36Z',
       assigned: {
         create: {
           firstName: 'String',
           lastName: 'String',
-          email: 'String7621073',
+          email: 'String2049241',
           organizationRoles: 'admin',
-          updatedAt: '2021-04-30T23:37:28Z',
+          updatedAt: '2021-04-30T23:31:36Z',
           organization: {
             create: {
               name: 'String',
-              slug: 'String7991184',
+              slug: 'String7311298',
               stripeId: 'String',
-              updatedAt: '2021-04-30T23:37:28Z',
+              updatedAt: '2021-04-30T23:31:36Z',
             },
           },
         },
-      },
-
-      project: {
-        create: { title: 'String', updatedAt: '2021-04-30T23:37:28Z' },
       },
     },
 
     two: {
       title: 'String',
       status: 'open',
-      updatedAt: '2021-04-30T23:37:28Z',
+      updatedAt: '2021-04-30T23:31:36Z',
       assigned: {
         create: {
           firstName: 'String',
           lastName: 'String',
-          email: 'String1440183',
+          email: 'String5792162',
           organizationRoles: 'admin',
-          updatedAt: '2021-04-30T23:37:28Z',
+          updatedAt: '2021-04-30T23:31:36Z',
           organization: {
             create: {
               name: 'String',
-              slug: 'String1540572',
+              slug: 'String9910267',
               stripeId: 'String',
-              updatedAt: '2021-04-30T23:37:28Z',
+              updatedAt: '2021-04-30T23:31:36Z',
             },
           },
         },
-      },
-
-      project: {
-        create: { title: 'String', updatedAt: '2021-04-30T23:37:28Z' },
       },
     },
   },

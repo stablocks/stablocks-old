@@ -38,8 +38,14 @@ export const Employee = {
     db.employee.findUnique({ where: { id: root.id } }).supervisor(),
   employees: (_obj, { root }) =>
     db.employee.findUnique({ where: { id: root.id } }).employees(),
+  access: (_obj, { root }) =>
+    db.employee.findUnique({ where: { id: root.id } }).access(),
   employeePay: (_obj, { root }) =>
     db.employee.findUnique({ where: { id: root.id } }).employeePay(),
+  onboarding: (_obj, { root }) =>
+    db.employee.findUnique({ where: { id: root.id } }).onboarding(),
+  onboardingTasks: (_obj, { root }) =>
+    db.employee.findUnique({ where: { id: root.id } }).onboardingTasks(),
   tickets: (_obj, { root }) =>
     db.employee.findUnique({ where: { id: root.id } }).tickets(),
   ticketMessage: (_obj, { root }) =>

@@ -13,7 +13,10 @@ export const schema = gql`
     supervisorId: String
     supervisor: Employee
     employees: [Employee]!
+    access: [EmployeeAccess]!
     employeePay: EmployeePay
+    onboarding: Onboarding
+    onboardingTasks: [OnboardingTask]!
     tickets: [Ticket]!
     ticketMessage: [TicketMessage]!
     tasks: [Task]!
@@ -30,6 +33,8 @@ export const schema = gql`
     hr
     marketing
     sales
+    finance
+    support
   }
 
   type Query {
