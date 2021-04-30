@@ -1,9 +1,12 @@
 import { Link, routes } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
+import DashboardHeading from 'src/components/DashboardHeading'
 
 const DashboardPage = () => {
+  const { currentUser } = useAuth()
   return (
     <>
-      <h1>DashboardPage</h1>
+      <DashboardHeading title={`Welcome, ${currentUser.firstName}!`} />
       <p>
         Find me in <code>./web/src/pages/DashboardPage/DashboardPage.js</code>
       </p>
