@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react'
-import { Link } from '@redwoodjs/router'
+import { Link, routes } from '@redwoodjs/router'
 import { Dialog, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Navigation from 'src/components/Navigation'
@@ -58,13 +58,16 @@ export default function AdminLayout({ children }) {
                 </div>
               </Transition.Child>
               <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-                <div className="flex-shrink-0 flex items-center px-4">
+                <Link
+                  to={routes.dashboard()}
+                  className="flex-shrink-0 flex items-center px-4"
+                >
                   <img
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
                     alt="Workflow"
                   />
-                </div>
+                </Link>
                 <Navigation />
               </div>
               <div className="flex-shrink-0 flex bg-gray-700 p-4">
@@ -101,13 +104,16 @@ export default function AdminLayout({ children }) {
         <div className="flex flex-col w-64">
           <div className="flex flex-col h-0 flex-1 bg-gray-800">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-              <div className="flex items-center flex-shrink-0 px-4">
+              <Link
+                to={routes.dashboard()}
+                className="flex items-center flex-shrink-0 px-4"
+              >
                 <img
                   className="h-8 w-auto"
                   src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
                   alt="Workflow"
                 />
-              </div>
+              </Link>
               <Navigation />
             </div>
             <div className="flex-shrink-0 flex bg-gray-700 p-4">
