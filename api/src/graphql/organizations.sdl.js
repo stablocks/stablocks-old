@@ -26,6 +26,7 @@ export const schema = gql`
   type Query {
     organizations: [Organization!]!
     organization(id: String!): Organization
+    organizationProvider: Organization
   }
 
   input CreateOrganizationInput {
