@@ -1,5 +1,5 @@
 import { Private, Router, Route, Set } from '@redwoodjs/router'
-import OrganizationProviderCell from 'src/components/OrganizationProviderCell'
+import OrganizationProviderCell from 'src/components/Cells/OrganizationProviderCell'
 import AdminLayout from 'src/layouts/AdminLayout'
 import MainLayout from 'src/layouts/MainLayout'
 
