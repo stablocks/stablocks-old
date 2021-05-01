@@ -8,6 +8,8 @@ const Routes = () => {
     <Router>
       <Private unauthenticated="login">
         <Set wrap={[OrganizationProviderCell, AdminLayout]}>
+          <Route path="/helpdesk/tickets" page={TicketsPage} name="tickets" />
+          <Route path="/helpdesk" page={HelpdeskPage} name="helpdesk" />
           <Route path="/profile" page={ProfilePage} name="profile" />
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
         </Set>
