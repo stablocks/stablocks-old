@@ -6,14 +6,16 @@ const DashboardHeading = ({ title, tabTitle, children }) => {
       <Helmet>
         <title>{tabTitle ? tabTitle : title}</title>
       </Helmet>
-      <div className="md:flex md:items-center md:justify-between">
+      <div className="lg:flex lg:flex-wrap lg:items-center lg:justify-between mb-6">
         <div className="flex-1 min-w-0">
-          <h1 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+          <h1 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl">
             {title}
           </h1>
         </div>
         {children && (
-          <div className="mt-4 flex md:mt-0 md:ml-4">{children}</div>
+          <div className="mt-4 flex flex-wrap gap-2 lg:mt-0 lg:ml-4">
+            {children}
+          </div>
         )}
       </div>
     </>

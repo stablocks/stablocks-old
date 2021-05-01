@@ -84,12 +84,12 @@ const Navigation = () => {
     { name: 'Marketing', to: '#', icon: SpeakerphoneIcon },
     { name: 'Sales', to: '#', icon: PresentationChartLineIcon },
     {
-      name: 'Help Desk',
-      to: '#',
+      name: 'Helpdesk',
+      to: routes.helpdesk(),
       icon: SupportIcon,
       submenu: [
         { name: 'Messages', to: '#', icon: ChatIcon },
-        { name: 'Tickets', to: '#', icon: TicketIcon },
+        { name: 'Tickets', to: routes.tickets(), icon: TicketIcon },
         { name: 'Articles', to: '#', icon: NewspaperIcon },
         { name: 'Categories', to: '#', icon: SortDescendingIcon },
       ],
@@ -130,10 +130,8 @@ const Navigation = () => {
               {item.submenu && (
                 <button
                   className={`${
-                    activeSubmenu === item.name
-                      ? 'rounded-tl-md rounded-tr-md bg-gray-600'
-                      : 'rounded-md'
-                  } text-gray-300 flex items-center px-2 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white`}
+                    activeSubmenu === item.name ? 'bg-gray-600' : ''
+                  } text-gray-300 flex items-center px-2 py-2 text-sm rounded-md font-medium hover:bg-gray-700 hover:text-white`}
                   onClick={() => toggleSubmenu(item.name)}
                 >
                   <span className="sr-only">
@@ -150,12 +148,13 @@ const Navigation = () => {
               )}
             </div>
             {item.submenu && activeSubmenu === item.name && (
-              <ul className="bg-gray-600 rounded-tl-md rounded-bl-md rounded-br-md p-1 space-y-1">
+              <ul className="bg-gray-600 mt-1 rounded-md p-1 space-y-1">
                 {item.submenu.map((item) => (
                   <li key={item.name}>
-                    <Link
+                    <NavLink
                       to={item.to}
                       className="flex-1 text-gray-100 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                      activeClassName="bg-gray-800 text-white"
                     >
                       <item.icon
                         className={classNames(
@@ -167,7 +166,7 @@ const Navigation = () => {
                         aria-hidden="true"
                       />
                       {item.name}
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
