@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react'
-import { Link, routes } from '@redwoodjs/router'
+import { Fragment, useState, useEffect } from 'react'
+import { Link, routes, useLocation } from '@redwoodjs/router'
 import { useAuth } from '@redwoodjs/auth'
 import { Dialog, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
@@ -49,7 +49,12 @@ const ProfileLink = () => {
 }
 
 const AdminLayout = ({ children }) => {
+  const { pathname, search, hash } = useLocation()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  useEffect(() => {
+    setSidebarOpen(false)
+  }, [pathname, search, hash])
 
   return (
     <>
