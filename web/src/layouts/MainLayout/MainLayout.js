@@ -5,7 +5,7 @@ const MainLayout = ({ children }) => {
     <>
       <Helmet
         titleTemplate="%s | Stablocks"
-        defaultTitle="Stablocks | Building blocks for a stable startup"
+        defaultTitle="Stablocks | Software building blocks for a stable startup"
       />
       {children}
     </>
