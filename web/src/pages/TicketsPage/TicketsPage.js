@@ -1,5 +1,7 @@
+import { Link } from '@redwoodjs/router'
 import DashboardHeading from 'src/components/DashboardHeading'
-import Button from 'src/components/Button'
+import Dialog from 'src/components/HeadlessUI/Dialog'
+import NewTicket from 'src/components/New/NewTicket'
 import { PlusIcon } from '@heroicons/react/outline'
 
 const people = [
@@ -23,11 +25,9 @@ const TicketsPage = () => {
   return (
     <>
       <DashboardHeading title="Tickets">
-        <Button title="New Ticket" as="button" />
-        <Button title="New Ticket" as="button" />
-        <Button title="New Ticket" as="button" />
-        <Button title="New Ticket" as="button" />
-        <Button title="New Ticket" as="button" main={true} icon={PlusIcon} />
+        <Dialog title="New Ticket" button={{ main: true, icon: PlusIcon }}>
+          <NewTicket />
+        </Dialog>
       </DashboardHeading>
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -66,8 +66,8 @@ const TicketsPage = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {people.map((person) => (
-                    <tr key={person.email}>
+                  {people.map((person, i) => (
+                    <tr key={i}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div>
@@ -97,12 +97,12 @@ const TicketsPage = () => {
                         {person.role}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a
-                          href="#"
+                        <Link
+                          to="#"
                           className="text-indigo-400 hover:text-indigo-600"
                         >
-                          Edit
-                        </a>
+                          View
+                        </Link>
                       </td>
                     </tr>
                   ))}
