@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Link, NavLink, routes } from '@redwoodjs/router'
-import { useAuth } from '@redwoodjs/auth'
+import { NavLink, routes } from '@redwoodjs/router'
 import {
   AtSymbolIcon,
   CurrencyDollarIcon,
@@ -35,7 +34,6 @@ function classNames(...classes) {
 }
 
 const Navigation = () => {
-  const { currentUser } = useAuth()
   const [activeSubmenu, setActiveSubmenu] = useState('')
 
   const navigation = [
@@ -118,7 +116,7 @@ const Navigation = () => {
             <div className="flex items-stretch space-x-1">
               <NavLink
                 to={item.to}
-                className="flex-1 text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                className="flex-1 text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base md:text-sm font-medium rounded-md"
                 activeClassName="bg-gray-900 text-white"
               >
                 <item.icon
@@ -153,7 +151,7 @@ const Navigation = () => {
                   <li key={item.name}>
                     <NavLink
                       to={item.to}
-                      className="flex-1 text-gray-100 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                      className="flex-1 text-gray-100 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base md:text-sm font-medium rounded-md"
                       activeClassName="bg-gray-800 text-white"
                     >
                       <item.icon
