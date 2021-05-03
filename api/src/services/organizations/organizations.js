@@ -52,8 +52,6 @@ export const Organization = {
     db.organization.findUnique({ where: { id: root.id } }).applicationFields(),
   employees: (_obj, { root }) =>
     db.organization.findUnique({ where: { id: root.id } }).employees(),
-  employeeAccess: (_obj, { root }) =>
-    db.organization.findUnique({ where: { id: root.id } }).employeeAccess(),
   contacts: (_obj, { root }) =>
     db.organization.findUnique({ where: { id: root.id } }).contacts(),
 }

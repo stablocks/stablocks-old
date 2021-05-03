@@ -34,7 +34,6 @@ model Organization {
   applicationFields ApplicationField[]
   // ----- Linked data -----
   employees         Employee[]
-  employeeAccess    EmployeeAccess[]
   contacts          Contact[]
 
   updatedAt DateTime @updatedAt
@@ -58,7 +57,6 @@ model Employee {
   supervisorId      String?
   supervisor        Employee?          @relation("SupervisorEmployees", fields: [supervisorId], references: [id])
   employees         Employee[]         @relation("SupervisorEmployees")
-  access            EmployeeAccess[]
   // ----- HR info -----
   employeePay       EmployeePay?
   onboarding        Onboarding?
@@ -75,14 +73,6 @@ model Employee {
 
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
-}
-
-model EmployeeAccess {
-  id             String       @id @default(cuid())
-  organization   Organization @relation(fields: [organizationId], references: [id])
-  organizationId String
-  employee       Employee     @relation(fields: [employeeId], references: [id])
-  employeeId     String
 }
 
 // Internal Department
@@ -274,9 +264,9 @@ model Ticket {
   description String?
   contact     Contact?        @relation(fields: [contactId], references: [id])
   contactId   String?
-  status      Status
-  assigned    Employee        @relation(fields: [assignedId], references: [id])
-  assignedId  String
+  status      Status          @default(open)
+  assigned    Employee?       @relation(fields: [assignedId], references: [id])
+  assignedId  String?
   messages    TicketMessage[]
 
   updatedAt DateTime @updatedAt

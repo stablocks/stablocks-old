@@ -13,7 +13,6 @@ export const schema = gql`
     supervisorId: String
     supervisor: Employee
     employees: [Employee]!
-    access: [EmployeeAccess]!
     employeePay: EmployeePay
     onboarding: Onboarding
     onboardingTasks: [OnboardingTask]!
