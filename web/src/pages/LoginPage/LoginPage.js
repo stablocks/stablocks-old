@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, navigate, routes } from '@redwoodjs/router'
+import { Link, navigate, routes, RouteFocus } from '@redwoodjs/router'
 import { useAuth } from '@redwoodjs/auth'
 import Helmet from 'react-helmet'
 import { TitleContext } from 'src/layouts/FormLayout'
@@ -46,19 +46,21 @@ const LoginPage = () => {
                 Email Address
               </Label>
               <div className="mt-1">
-                <TextField
-                  name="email"
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  errorClassName="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  validation={{
-                    required: true,
-                    pattern: {
-                      value: /[^@]+@[^\.]+\..+/,
-                    },
-                  }}
-                />
+                <RouteFocus>
+                  <TextField
+                    name="email"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    errorClassName="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    validation={{
+                      required: true,
+                      pattern: {
+                        value: /[^@]+@[^\.]+\..+/,
+                      },
+                    }}
+                  />
+                </RouteFocus>
               </div>
               <FieldError name="email" className="error-message" />
             </div>

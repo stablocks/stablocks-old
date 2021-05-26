@@ -1,4 +1,4 @@
-import { Link, navigate, routes } from '@redwoodjs/router'
+import { Link, navigate, routes, RouteFocus } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { useAuth } from '@redwoodjs/auth'
 import { toast } from '@redwoodjs/web/toast'
@@ -78,14 +78,16 @@ const SignupPage = () => {
                 First Name
               </Label>
               <div className="mt-1">
-                <TextField
-                  name="firstName"
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  errorClassName="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  validation={{
-                    required: true,
-                  }}
-                />
+                <RouteFocus>
+                  <TextField
+                    name="firstName"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    errorClassName="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    validation={{
+                      required: true,
+                    }}
+                  />
+                </RouteFocus>
               </div>
               <FieldError name="firstName" className="error-message" />
             </div>

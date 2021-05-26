@@ -1,5 +1,11 @@
 import { Fragment, useState, useEffect } from 'react'
-import { Link, routes, useLocation } from '@redwoodjs/router'
+import {
+  Link,
+  routes,
+  useLocation,
+  SkipNavLink,
+  SkipNavContent,
+} from '@redwoodjs/router'
 import { useAuth } from '@redwoodjs/auth'
 import { Toaster } from '@redwoodjs/web/toast'
 import { Dialog, Menu, Transition } from '@headlessui/react'
@@ -12,8 +18,9 @@ import {
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
 import Navigation from 'src/components/Navigation'
-import Logo from 'src/lib/logo.svg'
 import { Helmet } from 'react-helmet'
+import Logo from 'src/lib/logo.svg'
+import '@reach/skip-nav/styles.css'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -57,6 +64,7 @@ const AdminLayout = ({ children }) => {
         titleTemplate="%s | Stablocks"
         defaultTitle="Dashboard | Stablocks"
       />
+      <SkipNavLink />
       <Toaster />
       <div className="h-screen flex overflow-hidden bg-gray-100">
         <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -236,6 +244,8 @@ const AdminLayout = ({ children }) => {
               </div>
             </div>
           </div>
+
+          <SkipNavContent />
 
           <main className="flex-1 relative overflow-y-auto focus:outline-none">
             <div className="py-6 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
