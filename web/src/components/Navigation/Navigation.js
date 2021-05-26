@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink, routes } from '@redwoodjs/router'
+import { Link, routes, useLocation } from '@redwoodjs/router'
 import {
   AtSymbolIcon,
   CurrencyDollarIcon,
@@ -36,6 +36,17 @@ function classNames(...classes) {
 
 const Navigation = () => {
   const [activeSubmenu, setActiveSubmenu] = useState('')
+  const { pathname } = useLocation()
+
+  function checkActive(route) {
+    if (route !== '/' && pathname.includes(route)) {
+      return true
+    } else if (route === pathname) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   const navigation = [
     { name: 'Dashboard', to: routes.dashboard(), icon: HomeIcon },
@@ -127,17 +138,20 @@ const Navigation = () => {
         <ul key={item.name}>
           <li>
             <div className="flex items-stretch space-x-1">
-              <NavLink
+              <Link
                 to={item.to}
-                className="flex-1 text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base md:text-sm font-medium rounded-md"
-                activeClassName="bg-gray-900 text-white"
+                className={`${
+                  checkActive(item.to)
+                    ? 'bg-gray-900 text-white'
+                    : 'text-gray-300'
+                } flex-1 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base md:text-sm font-medium rounded-md`}
               >
                 <item.icon
                   className="text-gray-400 group-hover:text-gray-300 mr-3 h-6 w-6"
                   aria-hidden="true"
                 />
                 {item.name}
-              </NavLink>
+              </Link>
               {item.submenu && (
                 <button
                   className={`${
@@ -162,10 +176,13 @@ const Navigation = () => {
               <ul className="bg-gray-600 mt-1 rounded-md p-1 space-y-1">
                 {item.submenu.map((item) => (
                   <li key={item.name}>
-                    <NavLink
+                    <Link
                       to={item.to}
-                      className="flex-1 text-gray-100 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base md:text-sm font-medium rounded-md"
-                      activeClassName="bg-gray-800 text-white"
+                      className={`${
+                        checkActive(item.to)
+                          ? 'bg-gray-800 text-white'
+                          : 'text-gray-100'
+                      } flex-1 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base md:text-sm font-medium rounded-md`}
                     >
                       <item.icon
                         className={classNames(
@@ -177,7 +194,7 @@ const Navigation = () => {
                         aria-hidden="true"
                       />
                       {item.name}
-                    </NavLink>
+                    </Link>
                   </li>
                 ))}
               </ul>
