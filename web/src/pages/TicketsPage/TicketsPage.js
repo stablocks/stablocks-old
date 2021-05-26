@@ -1,7 +1,8 @@
 import { Link } from '@redwoodjs/router'
 import DashboardHeading from 'src/components/DashboardHeading'
+import { helpdeskTabs } from 'src/lib/dashboardTabs'
 import Dialog from 'src/components/HeadlessUI/Dialog'
-import NewTicket from 'src/components/New/NewTicket'
+import NewTicket from 'src/components/Modules/Helpdesk/NewTicket'
 import { PlusIcon } from '@heroicons/react/outline'
 
 const people = [
@@ -24,7 +25,7 @@ const people = [
 const TicketsPage = () => {
   return (
     <>
-      <DashboardHeading title="Tickets">
+      <DashboardHeading title="Tickets" tabs={helpdeskTabs}>
         <Dialog title="New Ticket" button={{ main: true, icon: PlusIcon }}>
           <NewTicket />
         </Dialog>

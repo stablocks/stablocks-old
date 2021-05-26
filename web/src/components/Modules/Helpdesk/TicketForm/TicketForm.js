@@ -5,7 +5,6 @@ import {
   Label,
   TextField,
   TextAreaField,
-  NumberField,
   Submit,
 } from '@redwoodjs/forms'
 

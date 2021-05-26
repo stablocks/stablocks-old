@@ -1,6 +1,6 @@
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import TicketForm from 'src/components/Forms/TicketForm'
+import TicketForm from 'src/components/Modules/Helpdesk/TicketForm'
 
 const CREATE_TICKET_MUTATION = gql`
   mutation CreateTicketMutation($input: CreateTicketInput!) {
