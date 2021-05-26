@@ -14,7 +14,7 @@ export const getCurrentUser = async (
     },
   })
 
-  return { ...employee, roles: parseJWT({ decoded }).roles }
+  return { ...employee, roles: employee.organizationRoles }
 }
 
 /**
