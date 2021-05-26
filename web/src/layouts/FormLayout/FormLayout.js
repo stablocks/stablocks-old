@@ -1,7 +1,10 @@
 import { Link, routes } from '@redwoodjs/router'
+import { Toaster } from '@redwoodjs/web/toast'
+import Helmet from 'react-helmet'
+import Logo from 'src/lib/logo.svg'
 
-const TitleContext = React.createContext({
-  title: 'Sign in to your account',
+export const TitleContext = React.createContext({
+  title: 'Login to your account',
   setTitle: () => {},
 })
 
@@ -11,14 +14,15 @@ const FormLayout = ({ children }) => {
 
   return (
     <TitleContext.Provider value={value}>
+      <Helmet
+        titleTemplate="%s | Stablocks"
+        defaultTitle="Stablocks | Software building blocks for stable startups"
+      />
+      <Toaster />
       <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <Link to={routes.home()} className="mx-auto contents">
-            <img
-              className="h-12 w-auto mx-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt="Workflow"
-            />
+            <Logo className="h-11 w-auto fill-current text-indigo-400 mx-auto" />
           </Link>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             {title}

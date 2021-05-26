@@ -1,6 +1,11 @@
-import { Link, routes } from '@redwoodjs/router'
+import { Link, navigate, routes } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
 
 const HomePage = () => {
+  const { currentUser } = useAuth()
+
+  if (currentUser) navigate(routes.dashboard())
+
   return (
     <>
       <h1>HomePage</h1>
