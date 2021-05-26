@@ -34,9 +34,9 @@ export const Empty = () => {
   return <></>
 }
 
-export const Success = ({ organization, children }) => {
+export const Success = ({ organizationProvider, children }) => {
   return (
-    <OrganizationContext.Provider value={organization}>
+    <OrganizationContext.Provider value={organizationProvider}>
       {children}
     </OrganizationContext.Provider>
   )

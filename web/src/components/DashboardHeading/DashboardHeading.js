@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet'
-import { Link, useLocation } from '@redwoodjs/router'
+import { Link, navigate, useLocation } from '@redwoodjs/router'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -7,6 +7,7 @@ function classNames(...classes) {
 
 const DashboardHeading = ({ title, tabTitle, tabs, children }) => {
   const { pathname } = useLocation()
+
   return (
     <>
       <Helmet>
@@ -33,10 +34,13 @@ const DashboardHeading = ({ title, tabTitle, tabs, children }) => {
                 id="current-tab"
                 name="current-tab"
                 className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                // defaultValue={tabs.find((tab) => tab.current).name}
+                value={pathname}
+                onChange={(e) => navigate(e.target.value)}
               >
                 {tabs.map((tab) => (
-                  <option key={tab.name}>{tab.name}</option>
+                  <option key={tab.name} value={tab.to}>
+                    {tab.name}
+                  </option>
                 ))}
               </select>
             </div>
