@@ -1,7 +1,16 @@
 import { db } from 'src/lib/db'
 
-export const employees = () => {
-  return db.employee.findMany()
+export const employees = async () => {
+  const user = context.currentUser
+  const id = user?.organizationId
+
+  if (!user || !id) return []
+
+  return db.employee.findMany({
+    where: {
+      organizationId: user.organizationId,
+    },
+  })
 }
 
 export const employee = ({ id }) => {

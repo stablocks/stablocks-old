@@ -1,6 +1,4 @@
 import { db } from 'src/lib/db'
-import { getCurrentUser } from 'src/lib/auth'
-import { useAuth } from '@redwoodjs/auth'
 
 export const organizations = () => {
   return db.organization.findMany()
@@ -14,12 +12,9 @@ export const organization = ({ id }) => {
 
 export const organizationProvider = () => {
   const user = context.currentUser
-
-  if (!user) return null
-
   const id = user?.organizationId
 
-  if (!id) return null
+  if (!user || !id) return null
 
   return db.organization.findUnique({
     where: { id },
