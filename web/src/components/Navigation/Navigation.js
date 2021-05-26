@@ -67,10 +67,12 @@ const Navigation = () => {
     },
     {
       name: 'Contacts',
-      to: '#',
+      to: routes.contacts(),
       icon: IdentificationIcon,
       roles: ['admin, marketing, sales'],
-      submenu: [{ name: 'Companies', to: '#', icon: AtSymbolIcon }],
+      submenu: [
+        { name: 'Companies', to: routes.companies(), icon: AtSymbolIcon },
+      ],
     },
     {
       name: 'Finance',
@@ -108,7 +110,7 @@ const Navigation = () => {
       to: routes.helpdesk(),
       icon: SupportIcon,
       submenu: [
-        { name: 'Messages', to: '#', icon: ChatIcon },
+        { name: 'Messages', to: routes.messages(), icon: ChatIcon },
         { name: 'Tickets', to: routes.tickets(), icon: TicketIcon },
         { name: 'Articles', to: '#', icon: NewspaperIcon },
         { name: 'Categories', to: '#', icon: SortDescendingIcon },

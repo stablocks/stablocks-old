@@ -45,7 +45,7 @@ const AdminLayout = ({ children }) => {
 
   const userNavigation = [
     { name: 'Your Profile', to: routes.profile() },
-    { name: 'Settings', to: '#' },
+    { name: 'Settings', to: routes.userSettings() },
   ]
 
   useEffect(() => {
