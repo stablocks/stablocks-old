@@ -4,6 +4,7 @@ export const QUERY = gql`
   query FIND_ORGANIZATION {
     organizationProvider {
       id
+      name
       email
       communications
       payroll
@@ -19,7 +20,7 @@ export const QUERY = gql`
   }
 `
 
-export const OrganizationContext = React.createContext()
+export const OrganizationContext = React.createContext('')
 
 export const Loading = () => (
   <div className="fixed w-screen h-screen top-0 left-0 flex items-center justify-center p-4">
