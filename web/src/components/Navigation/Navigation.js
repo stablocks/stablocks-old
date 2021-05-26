@@ -27,6 +27,7 @@ import {
   CogIcon,
   ChatIcon,
   EmojiHappyIcon,
+  UsersIcon,
 } from '@heroicons/react/outline'
 
 function classNames(...classes) {
@@ -40,11 +41,17 @@ const Navigation = () => {
     { name: 'Dashboard', to: routes.dashboard(), icon: HomeIcon },
     {
       name: 'Organization',
-      to: '#',
+      to: routes.organization(),
       icon: OfficeBuildingIcon,
       submenu: [
-        { name: 'Departments', to: '#', icon: TemplateIcon },
-        { name: 'Settings', to: '#', icon: CogIcon, roles: ['admin'] },
+        { name: 'Employees', to: routes.employees(), icon: UsersIcon },
+        { name: 'Departments', to: routes.departments(), icon: TemplateIcon },
+        {
+          name: 'Settings',
+          to: routes.settings(),
+          icon: CogIcon,
+          roles: ['admin'],
+        },
       ],
     },
     {
@@ -71,11 +78,15 @@ const Navigation = () => {
     },
     {
       name: 'Recruit',
-      to: '#',
+      to: routes.recruit(),
       icon: FilterIcon,
       submenu: [
-        { name: 'Jobs', to: '#', icon: BriefcaseIcon },
-        { name: 'Applications', to: '#', icon: ClipboardListIcon },
+        { name: 'Jobs', to: routes.jobs(), icon: BriefcaseIcon },
+        {
+          name: 'Applications',
+          to: routes.applications(),
+          icon: ClipboardListIcon,
+        },
         { name: 'Fields', to: '#', icon: TableIcon },
       ],
     },
@@ -94,9 +105,11 @@ const Navigation = () => {
     },
     {
       name: 'Projects',
-      to: '#',
+      to: routes.projects(),
       icon: CollectionIcon,
-      submenu: [{ name: 'Tasks', to: '#', icon: ClipboardCheckIcon }],
+      submenu: [
+        { name: 'Tasks', to: routes.tasks(), icon: ClipboardCheckIcon },
+      ],
     },
   ]
 
