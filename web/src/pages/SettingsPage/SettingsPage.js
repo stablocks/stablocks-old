@@ -1,9 +1,11 @@
 import { Link, routes } from '@redwoodjs/router'
+import DashboardHeading from 'src/components/DashboardHeading'
+import { organizationTabs } from 'src/lib/dashboardTabs'
 
 const SettingsPage = () => {
   return (
     <>
-      <h1>SettingsPage</h1>
+      <DashboardHeading title="Organization Settings" tabs={organizationTabs} />
       <p>
         Find me in <code>./web/src/pages/SettingsPage/SettingsPage.js</code>
       </p>

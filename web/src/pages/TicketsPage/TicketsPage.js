@@ -1,4 +1,4 @@
-import { Link } from '@redwoodjs/router'
+import { Link, routes } from '@redwoodjs/router'
 import DashboardHeading from 'src/components/DashboardHeading'
 import { helpdeskTabs } from 'src/lib/dashboardTabs'
 import Dialog from 'src/components/HeadlessUI/Dialog'
@@ -99,7 +99,7 @@ const TicketsPage = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <Link
-                          to="#"
+                          to={routes.ticket({ id: 1 })}
                           className="text-indigo-400 hover:text-indigo-600"
                         >
                           View

@@ -1,10 +1,11 @@
 import { Link, routes } from '@redwoodjs/router'
 import DashboardHeading from 'src/components/DashboardHeading'
+import { profileTabs } from 'src/lib/dashboardTabs'
 
 const ProfilePage = () => {
   return (
     <>
-      <DashboardHeading title="Profile" />
+      <DashboardHeading title="Profile" tabs={profileTabs} />
       <p>
         Find me in <code>./web/src/pages/ProfilePage/ProfilePage.js</code>
       </p>

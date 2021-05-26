@@ -5,7 +5,7 @@ import { recruitTabs } from 'src/lib/dashboardTabs'
 const JobsPage = () => {
   return (
     <>
-      <h1>JobsPage</h1>
+      <DashboardHeading title="Jobs" tabs={recruitTabs} />
       <p>
         Find me in <code>./web/src/pages/JobsPage/JobsPage.js</code>
       </p>
