@@ -1,4 +1,13 @@
 import { db } from 'src/lib/db'
+import { requireAuth } from 'src/lib/auth'
+
+const user = context.currentUser
+const orgId = user?.organizationId
+
+// Used when the environment variable REDWOOD_SECURE_SERVICES=1
+export const beforeResolver = (rules) => {
+  rules.add(requireAuth)
+}
 
 export const projects = () => {
   return db.project.findMany()

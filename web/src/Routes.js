@@ -19,6 +19,7 @@ const Routes = () => {
           <Route path="/recruit/jobs" page={JobsPage} name="jobs" />
           <Route path="/recruit" page={RecruitPage} name="recruit" />
           <Route path="/projects/tasks" page={TasksPage} name="tasks" />
+          <Route path="/projects/{id}" page={ProjectPage} name="project" />
           <Route path="/projects" page={ProjectsPage} name="projects" />
           <Route path="/helpdesk/articles/categories/{id}" page={ArticleCategoryPage} name="articleCategory" />
           <Route path="/helpdesk/articles/categories" page={ArticleCategoriesPage} name="articleCategories" />
