@@ -32,6 +32,7 @@ const Routes = () => {
           <Route path="/helpdesk" page={HelpdeskPage} name="helpdesk" />
           <Route path="/profile/settings" page={UserSettingsPage} name="userSettings" />
           <Route path="/profile" page={ProfilePage} name="profile" />
+          <Route path="/search" page={SearchPage} name="search" />
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
         </Set>
       </Private>
