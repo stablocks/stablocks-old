@@ -112,8 +112,12 @@ const Navigation = () => {
       submenu: [
         { name: 'Messages', to: routes.messages(), icon: ChatIcon },
         { name: 'Tickets', to: routes.tickets(), icon: TicketIcon },
-        { name: 'Articles', to: '#', icon: NewspaperIcon },
-        { name: 'Categories', to: '#', icon: SortDescendingIcon },
+        { name: 'Articles', to: routes.articles(), icon: NewspaperIcon },
+        {
+          name: 'Categories',
+          to: routes.articleCategories(),
+          icon: SortDescendingIcon,
+        },
       ],
     },
     {
