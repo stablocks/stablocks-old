@@ -21,8 +21,8 @@ const Routes = () => {
           <Route path="/projects/tasks" page={TasksPage} name="tasks" />
           <Route path="/projects/{id}" page={ProjectPage} name="project" />
           <Route path="/projects" page={ProjectsPage} name="projects" />
-          <Route path="/helpdesk/articles/categories/{id}" page={ArticleCategoryPage} name="articleCategory" />
-          <Route path="/helpdesk/articles/categories" page={ArticleCategoriesPage} name="articleCategories" />
+          <Route path="/helpdesk/categories/{id}" page={ArticleCategoryPage} name="articleCategory" />
+          <Route path="/helpdesk/categories" page={ArticleCategoriesPage} name="articleCategories" />
           <Route path="/helpdesk/articles/{id}" page={ArticlePage} name="article" />
           <Route path="/helpdesk/articles" page={ArticlesPage} name="articles" />
           <Route path="/helpdesk/tickets/{id}" page={TicketPage} name="ticket" />
