@@ -5,6 +5,7 @@ import {
   ThumbUpIcon,
   UserIcon,
 } from '@heroicons/react/solid'
+import DashboardHeading from 'src/components/DashboardHeading'
 import Listbox from 'src/components/HeadlessUI/Listbox'
 import BackButton from 'src/components/BackButton'
 
@@ -82,24 +83,21 @@ const comments = [
     name: 'Leslie Alexander',
     date: '4d ago',
     imageId: '1494790108377-be9c29b29330',
-    body:
-      'Ducimus quas delectus ad maxime totam doloribus reiciendis ex. Tempore dolorem maiores. Similique voluptatibus tempore non ut.',
+    body: 'Ducimus quas delectus ad maxime totam doloribus reiciendis ex. Tempore dolorem maiores. Similique voluptatibus tempore non ut.',
   },
   {
     id: 2,
     name: 'Michael Foster',
     date: '4d ago',
     imageId: '1519244703995-f4e0f30006d5',
-    body:
-      'Et ut autem. Voluptatem eum dolores sint necessitatibus quos. Quis eum qui dolorem accusantium voluptas voluptatem ipsum. Quo facere iusto quia accusamus veniam id explicabo et aut.',
+    body: 'Et ut autem. Voluptatem eum dolores sint necessitatibus quos. Quis eum qui dolorem accusantium voluptas voluptatem ipsum. Quo facere iusto quia accusamus veniam id explicabo et aut.',
   },
   {
     id: 3,
     name: 'Dries Vincent',
     date: '4d ago',
     imageId: '1506794778202-cad84cf45f1d',
-    body:
-      'Expedita consequatur sit ea voluptas quo ipsam recusandae. Ab sint et voluptatem repudiandae voluptatem et eveniet. Nihil quas consequatur autem. Perferendis rerum et.',
+    body: 'Expedita consequatur sit ea voluptas quo ipsam recusandae. Ab sint et voluptatem repudiandae voluptatem et eveniet. Nihil quas consequatur autem. Perferendis rerum et.',
   },
 ]
 
@@ -111,16 +109,11 @@ const TicketPage = () => {
   return (
     <>
       <BackButton page="Tickets" />
-      <div className="max-w-3xl mx-auto md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl">
-        <div className="flex items-center space-x-5">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Ticket Title</h1>
-          </div>
-        </div>
+      <DashboardHeading title="Ticket Title">
         <div className="mt-6 flex flex-col-reverse justify-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3">
           <Listbox options={publishingOptions} />
         </div>
-      </div>
+      </DashboardHeading>
 
       <div className="mt-8 max-w-3xl mx-auto grid grid-cols-1 gap-6 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-3">
         <div className="space-y-6 lg:col-start-1 lg:col-span-2">
