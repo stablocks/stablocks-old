@@ -1,4 +1,3 @@
-import { Link, routes } from '@redwoodjs/router'
 import Projects from 'src/components/Services/Projects/Projects'
 import Loader from 'src/components/Loader'
 import Illustration from 'src/components/Illustration'
@@ -10,6 +9,9 @@ export const QUERY = gql`
       id
       title
       description
+      tasks {
+        id
+      }
       updatedAt
       createdAt
     }

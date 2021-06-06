@@ -9,6 +9,13 @@ export const QUERY = gql`
       id
       title
       description
+      tasks {
+        id
+        title
+        description
+        status
+        assignedId
+      }
       updatedAt
       createdAt
     }

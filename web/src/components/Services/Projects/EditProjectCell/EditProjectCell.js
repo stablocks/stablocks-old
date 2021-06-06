@@ -1,7 +1,7 @@
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { navigate, routes } from '@redwoodjs/router'
 import ProjectForm from 'src/components/Services/Projects/ProjectForm'
+import Loader from 'src/components/Loader'
 
 export const QUERY = gql`
   query FIND_PROJECT_BY_ID($id: String!) {
@@ -26,7 +26,7 @@ const UPDATE_PROJECT_MUTATION = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <Loader />
 
 export const Success = ({ project }) => {
   const [updateProject, { loading, error }] = useMutation(
@@ -43,20 +43,11 @@ export const Success = ({ project }) => {
   }
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">
-          Edit Project {project.id}
-        </h2>
-      </header>
-      <div className="rw-segment-main">
-        <ProjectForm
-          project={project}
-          onSave={onSave}
-          error={error}
-          loading={loading}
-        />
-      </div>
-    </div>
+    <ProjectForm
+      project={project}
+      onSave={onSave}
+      error={error}
+      loading={loading}
+    />
   )
 }

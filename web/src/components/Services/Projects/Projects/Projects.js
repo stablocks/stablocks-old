@@ -1,8 +1,8 @@
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes } from '@redwoodjs/router'
-import { truncate, timeTag } from 'src/lib/utils'
-import { Table, TableHead, TableRow, TableData } from 'src/components/Table'
+import { truncate } from 'src/lib/utils'
+import { Table, TableRow, TableData } from 'src/components/Table'
 
 import { QUERY } from 'src/components/Services/Projects/ProjectsCell'
 
@@ -29,7 +29,7 @@ const ProjectsList = ({ projects }) => {
     }
   }
 
-  const tableHeads = ['Title', 'Description']
+  const tableHeads = ['Title', 'Description', 'Tasks']
 
   return (
     <Table headItems={tableHeads} lastCol="Options">
@@ -44,8 +44,9 @@ const ProjectsList = ({ projects }) => {
             </Link>
           </TableData>
           <TableData>{truncate(project.description)}</TableData>
+          <TableData>{`${project.tasks?.length} tasks`}</TableData>
           <TableData bold={true} last={true}>
-            <nav className="flex items-center gap-2">
+            <nav className="flex items-center space-x-3">
               <Link
                 to={routes.project({ id: project.id })}
                 title={'View project ' + project.title}
