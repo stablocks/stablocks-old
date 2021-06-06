@@ -13,16 +13,16 @@ const Layout = ({ children }) => {
 
   const menu = [
     {
-      title: 'Helpdesk',
-      to: routes.publicHelpdesk({ slug: organization.slug }),
-      icon: SupportIcon,
-      authorized: helpdesk,
-    },
-    {
       title: 'Careers',
       to: routes.publicRecruit({ slug: organization.slug }),
       icon: BriefcaseIcon,
       authorized: recruiting,
+    },
+    {
+      title: 'Helpdesk',
+      to: routes.publicHelpdesk({ slug: organization.slug }),
+      icon: SupportIcon,
+      authorized: helpdesk,
     },
   ]
 
@@ -51,10 +51,13 @@ const Layout = ({ children }) => {
         defaultTitle={`${organization.name} | Stablocks`}
       />
       <div className="flex flex-col min-h-screen">
-        <header className="relative bg-white w-full">
-          <div className="flex justify-between items-center py-6 md:space-x-10">
+        <header className="relative w-full">
+          <div className="flex flex-col md:flex-row justify-between items-center py-6 md:space-x-10">
             <div className="flex">
-              <Link to={routes.publicOrganization({ slug: organization.slug })}>
+              <Link
+                to={routes.publicOrganization({ slug: organization.slug })}
+                className="text-gray-800"
+              >
                 <span
                   className={
                     organization.image ? 'sr-only' : 'font-bold text-xl'
@@ -71,7 +74,7 @@ const Layout = ({ children }) => {
                 )}
               </Link>
             </div>
-            <div className="flex space-x-10">
+            <div className="flex flex-wrap mt-2 md:mt-0 space-x-10">
               {menu.map(
                 (item, i) =>
                   item.authorized && (
@@ -90,9 +93,9 @@ const Layout = ({ children }) => {
             </div>
           </div>
         </header>
-        <main className="flex-1 w-full">{children}</main>
+        <main className="flex-1 w-full flex flex-col">{children}</main>
         <footer className="text-center px-4 w-full">
-          <p className="text-gray-400 text-sm py-4">
+          <p className="text-gray-500 text-sm py-4">
             powered by{' '}
             <Link to={routes.home()} className="font-semibold">
               Stablocks
@@ -106,9 +109,11 @@ const Layout = ({ children }) => {
 
 const PublicOrganizationLayout = ({ slug, children }) => {
   return (
-    <PublicOrganizationProviderCell slug={slug}>
-      <Layout>{children}</Layout>
-    </PublicOrganizationProviderCell>
+    <div className="bg-gray-100">
+      <PublicOrganizationProviderCell slug={slug}>
+        <Layout>{children}</Layout>
+      </PublicOrganizationProviderCell>
+    </div>
   )
 }
 

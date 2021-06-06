@@ -60,6 +60,9 @@ module.exports = {
           900: '#0F2830',
         },
       },
+      minWidth: {
+        '1/2': '50%',
+      },
     },
   },
   variants: {

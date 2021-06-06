@@ -1,7 +1,7 @@
 @import "tailwindcss/base";
 
 a {
-  @apply text-indigo-400 hover:text-indigo-500;
+  @apply text-indigo-400 hover:text-indigo-500 duration-300 transition-colors;
 }
 
 svg {
