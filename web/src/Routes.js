@@ -9,27 +9,33 @@ const Routes = () => {
     <Router>
       <Private unauthenticated="login">
         <Set wrap={[OrganizationProviderCell, AdminLayout]}>
-          <Route path="/organization/settings" page={SettingsPage} name="settings" />
+          <Private unauthenticated="login" role={['admin']}>
+            <Route path="/organization/settings" page={SettingsPage} name="settings" />
+          </Private>
           <Route path="/organization/departments" page={DepartmentsPage} name="departments" />
           <Route path="/organization/employees" page={EmployeesPage} name="employees" />
           <Route path="/organization" page={OrganizationPage} name="organization" />
           <Route path="/contacts/companies" page={CompaniesPage} name="companies" />
           <Route path="/contacts" page={ContactsPage} name="contacts" />
-          <Route path="/recruit/applications" page={ApplicationsPage} name="applications" />
-          <Route path="/recruit/jobs" page={JobsPage} name="jobs" />
-          <Route path="/recruit" page={RecruitPage} name="recruit" />
+          <Private unauthenticated="login" role={['admin', 'hr']}>
+            <Route path="/recruit/applications" page={ApplicationsPage} name="applications" />
+            <Route path="/recruit/jobs" page={JobsPage} name="jobs" />
+            <Route path="/recruit" page={RecruitPage} name="recruit" />
+          </Private>
+          <Private unauthenticated="login" role={['admin', 'support']}>
+            <Route path="/helpdesk/categories/{id}" page={ArticleCategoryPage} name="articleCategory" />
+            <Route path="/helpdesk/categories" page={ArticleCategoriesPage} name="articleCategories" />
+            <Route path="/helpdesk/articles/{id}" page={ArticlePage} name="article" />
+            <Route path="/helpdesk/articles" page={ArticlesPage} name="articles" />
+            <Route path="/helpdesk/tickets/{id}" page={TicketPage} name="ticket" />
+            <Route path="/helpdesk/tickets" page={TicketsPage} name="tickets" />
+            <Route path="/helpdesk/messages/{id}" page={MessagePage} name="message" />
+            <Route path="/helpdesk/messages" page={MessagesPage} name="messages" />
+            <Route path="/helpdesk" page={HelpdeskPage} name="helpdesk" />
+          </Private>
           <Route path="/projects/tasks" page={TasksPage} name="tasks" />
           <Route path="/projects/{id}" page={ProjectPage} name="project" />
           <Route path="/projects" page={ProjectsPage} name="projects" />
-          <Route path="/helpdesk/categories/{id}" page={ArticleCategoryPage} name="articleCategory" />
-          <Route path="/helpdesk/categories" page={ArticleCategoriesPage} name="articleCategories" />
-          <Route path="/helpdesk/articles/{id}" page={ArticlePage} name="article" />
-          <Route path="/helpdesk/articles" page={ArticlesPage} name="articles" />
-          <Route path="/helpdesk/tickets/{id}" page={TicketPage} name="ticket" />
-          <Route path="/helpdesk/tickets" page={TicketsPage} name="tickets" />
-          <Route path="/helpdesk/messages/{id}" page={MessagePage} name="message" />
-          <Route path="/helpdesk/messages" page={MessagesPage} name="messages" />
-          <Route path="/helpdesk" page={HelpdeskPage} name="helpdesk" />
           <Route path="/profile/settings" page={UserSettingsPage} name="userSettings" />
           <Route path="/profile" page={ProfilePage} name="profile" />
           <Route path="/search" page={SearchPage} name="search" />
