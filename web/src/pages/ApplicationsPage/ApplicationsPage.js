@@ -3,9 +3,17 @@ import DashboardHeading from 'src/components/DashboardHeading'
 import { recruitTabs } from 'src/lib/dashboardTabs'
 
 const ApplicationsPage = () => {
+  const breadcrumbs = [
+    { title: 'Recruit', to: routes.recruit() },
+    { title: 'Applications', to: routes.applications() },
+  ]
   return (
     <>
-      <DashboardHeading title="Applications" tabs={recruitTabs} />
+      <DashboardHeading
+        title="Applications"
+        tabs={recruitTabs}
+        breadcrumbs={breadcrumbs}
+      />
       <p>
         Find me in{' '}
         <code>./web/src/pages/ApplicationsPage/ApplicationsPage.js</code>
