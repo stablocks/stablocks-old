@@ -303,8 +303,8 @@ model Task {
   title       String
   description String?
   status      Status
-  assigned    Employee      @relation(fields: [assignedId], references: [id])
-  assignedId  String
+  assigned    Employee?     @relation(fields: [assignedId], references: [id])
+  assignedId  String?
   project     Project       @relation(fields: [projectId], references: [id])
   projectId   String
   messages    TaskMessage[]
