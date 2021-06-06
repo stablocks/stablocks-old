@@ -1,4 +1,3 @@
-import { Link, routes } from '@redwoodjs/router'
 import ProjectCell from 'src/components/Services/Projects/ProjectCell'
 
 const ProjectPage = ({ id }) => {

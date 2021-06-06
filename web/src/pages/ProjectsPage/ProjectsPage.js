@@ -1,4 +1,3 @@
-import { Link, routes } from '@redwoodjs/router'
 import DashboardHeading from 'src/components/DashboardHeading'
 import { projectsTabs } from 'src/lib/dashboardTabs'
 import Dialog from 'src/components/HeadlessUI/Dialog'
