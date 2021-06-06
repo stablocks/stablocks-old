@@ -3,9 +3,17 @@ import DashboardHeading from 'src/components/DashboardHeading'
 import { helpdeskTabs } from 'src/lib/dashboardTabs'
 
 const MessagesPage = () => {
+  const breadcrumbs = [
+    { title: 'Helpdesk', to: routes.helpdesk() },
+    { title: 'Messages', to: routes.messages() },
+  ]
   return (
     <>
-      <DashboardHeading title="Messages" tabs={helpdeskTabs} />
+      <DashboardHeading
+        title="Messages"
+        tabs={helpdeskTabs}
+        breadcrumbs={breadcrumbs}
+      />
       <p>
         Find me in <code>./web/src/pages/MessagesPage/MessagesPage.js</code>
       </p>

@@ -1,4 +1,3 @@
-import { Link, routes } from '@redwoodjs/router'
 import DashboardHeading from 'src/components/DashboardHeading'
 import { contactsTabs } from 'src/lib/dashboardTabs'
 import { SearchContext } from 'src/layouts/AdminLayout'
@@ -15,18 +14,8 @@ const ContactsPage = () => {
   return (
     <>
       <DashboardHeading title="Contacts" tabs={contactsTabs}>
-        <Dialog
-          title="New Contact"
-          button={{ main: true, icon: PlusIcon }}
-        ></Dialog>
+        <Dialog title="New Contact" button={{ main: true, icon: PlusIcon }} />
       </DashboardHeading>
-      <p>
-        Find me in <code>./web/src/pages/ContactsPage/ContactsPage.js</code>
-      </p>
-      <p>
-        My default route is named <code>contacts</code>, link to me with `
-        <Link to={routes.contacts()}>Contacts</Link>`
-      </p>
     </>
   )
 }

@@ -23,9 +23,17 @@ const people = [
 ]
 
 const TicketsPage = () => {
+  const breadcrumbs = [
+    { title: 'Helpdesk', to: routes.helpdesk() },
+    { title: 'Tickets', to: routes.tickets() },
+  ]
   return (
     <>
-      <DashboardHeading title="Tickets" tabs={helpdeskTabs}>
+      <DashboardHeading
+        title="Tickets"
+        tabs={helpdeskTabs}
+        breadcrumbs={breadcrumbs}
+      >
         <Dialog title="New Ticket" button={{ main: true, icon: PlusIcon }}>
           <NewTicket />
         </Dialog>

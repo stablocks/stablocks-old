@@ -5,9 +5,17 @@ import Dialog from 'src/components/HeadlessUI/Dialog'
 import { PlusIcon } from '@heroicons/react/outline'
 
 const ArticlesPage = () => {
+  const breadcrumbs = [
+    { title: 'Helpdesk', to: routes.helpdesk() },
+    { title: 'Articles', to: routes.articles() },
+  ]
   return (
     <>
-      <DashboardHeading title="Articles" tabs={helpdeskTabs}>
+      <DashboardHeading
+        title="Articles"
+        tabs={helpdeskTabs}
+        breadcrumbs={breadcrumbs}
+      >
         <Dialog
           title="New Article"
           button={{ main: true, icon: PlusIcon }}
