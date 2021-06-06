@@ -71,10 +71,9 @@ const AdminLayout = ({ children }) => {
     setSidebarOpen(false)
 
     const currentPath = pathname.split('/')
+    const pathCheck = currentPath[currentPath.length - 1]
 
-    const pathCheck = currentPath[currentPath - 1]
-
-    if (pathname.substring(1) !== searchType) {
+    if (pathCheck !== searchType) {
       setSearchTitle('')
       setSearchType('')
     }
