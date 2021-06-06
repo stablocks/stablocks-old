@@ -16,6 +16,11 @@ export const QUERY = gql`
       projectManagement
       helpdesk
       taskTracking
+      employees {
+        id
+        firstName
+        lastName
+      }
     }
   }
 `

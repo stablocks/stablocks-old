@@ -4,16 +4,15 @@ import { XIcon } from '@heroicons/react/outline'
 import Button from 'src/components/Button'
 
 export default function Modal(props) {
-  const { title, button, children } = props
+  const { title, button, buttonClasses, children } = props
   const [open, setOpen] = useState(false)
   const openButtonRef = createRef()
   const cancelButtonRef = useRef()
 
   function closeModal() {
     setOpen(false)
-    setTimeout(() => {
-      openButtonRef?.current && openButtonRef.current.focus()
-    }, 300)
+
+    openButtonRef?.current.focus()
   }
 
   function openModal() {
@@ -22,14 +21,24 @@ export default function Modal(props) {
 
   return (
     <>
-      <Button
-        title={button?.title ? button.title : title}
-        icon={button?.icon}
-        main={button?.main}
-        as="button"
-        ref={openButtonRef}
-        onClick={openModal}
-      />
+      {!buttonClasses ? (
+        <Button
+          title={button?.title ? button.title : title}
+          icon={button?.icon}
+          main={button?.main}
+          as="button"
+          ref={openButtonRef}
+          onClick={openModal}
+        />
+      ) : (
+        <button
+          className={buttonClasses}
+          ref={openButtonRef}
+          onClick={openModal}
+        >
+          {button?.title ? button.title : title}
+        </button>
+      )}
       <Transition show={open} as={Fragment}>
         <Dialog
           as="div"
