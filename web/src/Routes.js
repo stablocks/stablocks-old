@@ -36,6 +36,11 @@ const Routes = () => {
           <Route path="/dashboard" page={DashboardPage} name="dashboard" />
         </Set>
       </Private>
+      <Route path="/u/{slug}/helpdesk/{id}" page={PublicTicketPage} name="publicTicket" />
+      <Route path="/u/{slug}/helpdesk" page={PublicHelpdeskPage} name="publicHelpdesk" />
+      <Route path="/u/{slug}/careers/{id}" page={PublicJobPage} name="publicJob" />
+      <Route path="/u/{slug}/careers" page={PublicRecruitPage} name="publicRecruit" />
+      <Route path="/u/{slug}" page={PublicOrganizationPage} name="publicOrganization" />
       <Set wrap={FormLayout}>
         <Route path="/signup" page={SignupPage} name="signup" />
         <Route path="/login" page={LoginPage} name="login" />

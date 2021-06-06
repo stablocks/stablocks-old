@@ -16,3 +16,9 @@ export const organizationProvider = () => {
     where: { id },
   })
 }
+
+export const publicOrganizationProvider = ({ slug }) => {
+  return db.organization.findUnique({
+    where: { slug: slug },
+  })
+}
